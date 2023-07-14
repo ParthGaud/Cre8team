@@ -3,8 +3,10 @@
 import Input from "./Input";
 import AuthModal from "./AuthModal";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
+import { useContext, useState } from "react";
 
 const LoginComponent = () => {
+  const [loading, setIsLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm<FieldValues>({
     defaultValues: {
       email: "",
@@ -13,22 +15,27 @@ const LoginComponent = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
-    // TODO
+    setIsLoading(true);
+
+    // TODO : make a request to signup
+    
+    setIsLoading(false);
   };
   const body = (
     <>
       <div className="w-full mb-3">
         <div className="text-sm text-neutral-800">Email Address</div>
-        <Input type="text" placeholder="Enter email address" />
+        <Input type="text" placeholder="Enter email address" {...register('email', {required:true})} />
       </div>
       <div className="w-full mb-3">
         <div className="text-sm text-neutral-800">Password</div>
-        <Input type="password" placeholder="Enter password" />
+        <Input type="password" placeholder="Enter password" {...register('password', {required:true})} />
       </div>
+      
     </>
   );
   return (
-    <AuthModal onSubmit={onSubmit} imageSrc="/images/frame.svg">
+    <AuthModal heading="Login" onSubmit={onSubmit} imageSrc="/images/frame.svg" handleSubmit={handleSubmit} isLoading={loading}>
       {body}
     </AuthModal>
   );

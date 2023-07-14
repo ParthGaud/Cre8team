@@ -1,8 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Figtree, Inter } from "next/font/google";
-import SupabaseProvider from "@/app/providers/SupabaseProvider";
-import {MyUserContextProvider} from "@/app/hooks/useUser";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +9,7 @@ export const metadata: Metadata = {
   description: "Find your team",
 };
 
-const font = Figtree({subsets: ['latin']})
+const font = Figtree({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -20,11 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>
-        <SupabaseProvider>
-          <MyUserContextProvider>{children}</MyUserContextProvider>
-        </SupabaseProvider>
-      </body>
+      <body className={font.className}>{children}</body>
     </html>
   );
 }
