@@ -4,9 +4,14 @@ import Input from "./Input";
 import AuthModal from "./AuthModal";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { useContext, useState } from "react";
+import {auth} from '@/utils/firebase'
+import{signInWithEmailAndPassword} from 'firebase/auth'
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const LoginComponent = () => {
-  const [loading, setIsLoading] = useState(false);
+  const [loading, setIsLoading] = useState(false); 
+  const router = useRouter()
   const { register, handleSubmit, reset } = useForm<FieldValues>({
     defaultValues: {
       email: "",
@@ -17,8 +22,14 @@ const LoginComponent = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     setIsLoading(true);
 
-    // TODO : make a request to signup
-    
+    const promise = await signInWithEmailAndPassword(auth, values.email, values.password)
+    if(promise.user){
+      toast.success('user logged in')
+      router.refresh()
+    }
+    else{
+      toast.error('Error')
+    }
     setIsLoading(false);
   };
   const body = (

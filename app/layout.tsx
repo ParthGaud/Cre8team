@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Figtree, Inter } from "next/font/google";
+import UserProvider from '@/app/provider/UserProvider'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body className={font.className}>
+        <UserProvider>{children}</UserProvider>
+      </body>
     </html>
   );
 }

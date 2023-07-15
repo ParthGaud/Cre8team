@@ -10,9 +10,10 @@ import {
   SubmitHandler,
   UseFormHandleSubmit,
 } from "react-hook-form";
-import React from "react";
+import React, { useContext } from "react";
 import Button from "./Button";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/navigation";
+import { userContext } from "@/app/hooks/useUser";
 
 interface AuthModalProps {
   isLoading: boolean
@@ -31,6 +32,11 @@ const AuthModal: React.FC<AuthModalProps> = ({
   heading,
   isLoading
 }) => {
+  const router = useRouter()
+  const context = useContext(userContext)
+  if(context?.user){
+    router.push('/dashboard')
+  }
   return (
     <Container>
       <div className="fixed h-screen w-screen bg-blue-400 opacity-60 rounded-full -translate-x-[50%] z-[-1]"></div>

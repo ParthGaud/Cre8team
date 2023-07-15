@@ -4,15 +4,15 @@ import Input from "./Input";
 import AuthModal from "./AuthModal";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/firebase";
-import { use, useState } from "react";
+import {auth} from '@/utils/firebase'
+import { use, useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { userContext } from "@/app/hooks/useUser";
 
 const SignupComponent = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const user = auth.currentUser;
   const { register, handleSubmit, reset } = useForm<FieldValues>({
     defaultValues: {
       name: "",
@@ -28,12 +28,12 @@ const SignupComponent = () => {
 
     try {
       createUserWithEmailAndPassword(auth, values.email, values.password)
-        .then((res) => console.log(res))
+        .then((res) => toast.success("/user created"))
         .catch((error) => toast.error(error.message));
     } catch (error) {
       console.log(error);
     }
-    router.refresh();
+    router.push('/login')
 
     setIsLoading(false);
   };
@@ -65,10 +65,6 @@ const SignupComponent = () => {
       </div>
     </>
   );
-
-  if (user) {
-    return router.push("/dashboard");
-  }
   return (
     <AuthModal
       heading="Signup"
