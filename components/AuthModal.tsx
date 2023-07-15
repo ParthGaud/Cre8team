@@ -35,7 +35,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
   const router = useRouter()
   const context = useContext(userContext)
   if(context?.user){
-    router.push('/dashboard')
+    router.push('/Dashboard')
   }
   return (
     <Container>

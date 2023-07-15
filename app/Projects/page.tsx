@@ -1,7 +1,12 @@
-const Projects = () => {
+import { Project } from "@/types"
+import ProjectClient from "./ProjectClient"
+import getProjects from "@/actions/getProjects"
+
+const Projects = async () => {
+    const projects : Project[] | null = await getProjects()
     return (
         <div>
-            Projects
+            <ProjectClient projects={projects} />
         </div>
     )
 }

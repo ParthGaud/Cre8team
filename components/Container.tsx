@@ -25,7 +25,7 @@ const Container: React.FC<ContainerProps> = ({ children, className }) => {
   }
   return (
     <>
-      <div className={twMerge("flex flex-row items-center justify-between h-min-[136px] min-w-full py-6 px-10", className)}>
+      <div className={twMerge("flex flex-row items-center justify-between h-min-[136px] min-w-full py-6 px-10 bg-blue-100", className)}>
         <div className="flex-1 flex items-center gap-x-5 flex-row">
             <div className="" onClick={() => router.push("/")}>
                 <Image src='/images/Logo.svg' className="hidden md:block cursor-pointer"  width={180} height={180} alt="logo" />

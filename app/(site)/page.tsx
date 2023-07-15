@@ -2,9 +2,7 @@ import Image from "next/image";
 import Container from "@/components/Container";
 import { TiTick } from "react-icons/ti";
 import Heading from "@/components/Heading";
-import Head from "next/head";
 import Button from "@/components/Button";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 export default function Home() {
   return (
@@ -50,5 +48,6 @@ export default function Home() {
         </div>
       </div>
     </Container>
+    
   );
 }

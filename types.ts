@@ -10,3 +10,11 @@ export interface UserDetails {
   phone_number: number | null;
   website: string | null;
 }
+
+export interface Project{
+  id: string;
+  user_id: string;
+  title: string;
+  description: string
+  applicants: string[]
+}
