@@ -16,5 +16,13 @@ export interface Project{
   user_id: string;
   title: string;
   description: string
-  applicants: string[]
+  applicants: string[] | null
+}
+
+export interface Applicant{
+  id: string;
+  name: string;
+  email: string;
+  phone_number: number;
+  linkedin: string
 }

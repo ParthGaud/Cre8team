@@ -62,7 +62,7 @@ const CreateProject = () => {
                 
                 <div>
                 <label className="text-sm text-neutral-800">Project Description</label>
-                <Input type="text" disabled={isLoading} {...register('title', {required: true})} className="min-h-[100px]" placeholder="Write an overview of your project. What is the purpose, goal and skills needed?" />
+                <Input type="text" disabled={isLoading} {...register('description', {required: true})} className="min-h-[100px]" placeholder="Write an overview of your project. What is the purpose, goal and skills needed?" />
                 </div>
                 <Button type="submit" disabled={isLoading}>Create Project</Button>
             </form>

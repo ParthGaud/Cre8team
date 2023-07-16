@@ -5,7 +5,6 @@ import DashboardClient from "./DashboardClient"
 
 
 const Dashboard = () => {
-    let user = null
 
     return (
         <DashboardClient />

@@ -1,9 +1,11 @@
+'use client'
+
 import * as Dialog from "@radix-ui/react-dialog";
 import React from "react";
 import { IoMdClose } from "react-icons/io";
 
 interface CreateProjectModal {
-  title: string;
+  title?: string;
   description?: string;
   onChange: (open: boolean) => void;
   children: React.ReactNode;

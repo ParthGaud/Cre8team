@@ -12,7 +12,9 @@ interface DashboardClientProps{
 const DashboardClient: React.FC<DashboardClientProps> = ({projects}) => {
     return (
         <Container>
-            dashboard
+            <div>
+                
+            </div>
         </Container>
     )
 }
