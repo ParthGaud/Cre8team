@@ -1,6 +1,5 @@
 "use client";
 
-import Button from "@/components/Button";
 import { Project } from "@/types";
 import Container from "@/components/Container";
 import React, { useContext } from "react";
@@ -16,15 +15,19 @@ interface DashboardClientProps {
 const DashboardClient: React.FC<DashboardClientProps> = ({ projects, id }) => {
   const user = useContext(userContext)?.user;
   const router = useRouter();
-  if(id === null || user === null){
+  if(id === null || user === null || projects == null){
     router.push('/login')
   }
   else if (user?.uid != id) {
     router.push('/')
   }
-  const onclick = (id: string) => {};
+  const onclick = (id: string) => {
+    // router.push(`/Projects/${id}`)
+  };
 
-  const onClickParticipants = (id: string) => {};
+  const onClickParticipants = (id: string) => {
+    router.push(`/applicants/${id}`)
+  };
 
   return (
     <Container>

@@ -43,7 +43,7 @@ const ProjectClient: React.FC<ProjectClientProps> = ({ projects }) => {
     <>
       <Container>
         <div className="">
-          <div className="bg-blue-100 md:px-24 lg:px-40 xl:px-96 px-10">
+          <div className="bg-blue-100 px-10 md:px-24 lg:px-40 xl:px-64">
             <h1 className="text-3xl font-semibold pt-8">
               Find and Create Projects
             </h1>

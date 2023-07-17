@@ -21,6 +21,7 @@ const Container: React.FC<ContainerProps> = ({ children, className }) => {
 
   const Logout = async () => {
     await auth.signOut()
+    router.refresh()
     router.push('/')
   }
   return (
@@ -31,8 +32,8 @@ const Container: React.FC<ContainerProps> = ({ children, className }) => {
                 <Image src='/images/Logo.svg' className="hidden md:block cursor-pointer"  width={180} height={180} alt="logo" />
             </div>
             <NavItems label="Projects" onClick={() => router.push('/Projects')} />
-            <NavItems label={`Dashboard`} onClick={() => router.push(`Dashboard/${context?.user?.uid}`)} />
-            <NavItems label="About" onClick={() => router.push('About')} />
+            <NavItems label={`Dashboard`} onClick={() => router.push(`/Dashboard/${context?.user?.uid}`)} />
+            <NavItems label="About" onClick={() => router.push('/About')} />
         </div>
 
         {context?.user ? (
