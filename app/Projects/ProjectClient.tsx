@@ -62,7 +62,7 @@ const ProjectClient: React.FC<ProjectClientProps> = ({ projects }) => {
               No project found
             </div>
           ) : (
-            <div className="md:px-24 lg:px-40 xl:px-64 mt-8 px-10 flex flex-col gap-y-2">
+            <div className="md:px-24 lg:px-40 xl:px-64 mt-8 px-10 flex flex-col gap-y-6">
               {projects.map((project, idx) => (
                 <ProjectItem key={idx} project={project} onClick={onclick} />
               ))}

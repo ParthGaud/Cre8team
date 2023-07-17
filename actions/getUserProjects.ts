@@ -3,11 +3,7 @@ import { auth, db } from "@/utils/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-const getUserProjects = async () => {
-  let user_id = auth.currentUser
-  console.log(user_id)
-
-
+const getUserProjects = async (user_id: string) => {
   if (!user_id) {
     return null;
   }
@@ -19,7 +15,9 @@ const getUserProjects = async () => {
   const documents = await getDocs(ref);
 
   documents.forEach((doc) => {
-    data.push(doc.data() as Project);
+    const project: Project = doc.data() as Project;
+    project["id"] = doc.id;
+    data.push(project as Project);
   });
 
   return (data as Project[]) || null;

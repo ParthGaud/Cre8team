@@ -30,9 +30,9 @@ const Container: React.FC<ContainerProps> = ({ children, className }) => {
             <div className="" onClick={() => router.push("/")}>
                 <Image src='/images/Logo.svg' className="hidden md:block cursor-pointer"  width={180} height={180} alt="logo" />
             </div>
-            <NavItems label="Projects" />
-            <NavItems label="Dashboard" />
-            <NavItems label="About" />
+            <NavItems label="Projects" onClick={() => router.push('/Projects')} />
+            <NavItems label={`Dashboard`} onClick={() => router.push(`Dashboard/${context?.user?.uid}`)} />
+            <NavItems label="About" onClick={() => router.push('About')} />
         </div>
 
         {context?.user ? (
