@@ -87,7 +87,7 @@ const Project: React.FC<ProjectProps> = ({ project }) => {
         db,
         "projects",
         project.id,
-        "applicant",
+        "applicants",
         user?.uid as string
       );
       const response = await setDoc(collectionRef, {
@@ -95,10 +95,15 @@ const Project: React.FC<ProjectProps> = ({ project }) => {
         email: values.email,
         phone_number: values.phone_number,
         linkedin: values.linkedin,
+        status: 'pending'
       });
 
       await updateDoc(doc(db, "projects", project.id), {
         applicants: arrayUnion(user?.uid as string),
+      });
+
+      await updateDoc(doc(db, "users", user?.uid as string), {
+        applied: arrayUnion(project.id),
       });
 
       toast.success("applied");
@@ -201,7 +206,7 @@ const Project: React.FC<ProjectProps> = ({ project }) => {
             />
           </div>
           <Button type="submit" disabled={isLoading}>
-            Create Project
+            Apply
           </Button>
         </form>
       </CreateProjectModal>

@@ -1,15 +1,15 @@
-export interface UserDetails {
-  about: string | null;
-  email: string | null;
-  first_name: string | null;
-  id: string;
-  industry: string | null;
-  last_name: string | null;
-  linkedin: string | null;
-  location: string | null;
-  phone_number: number | null;
-  website: string | null;
-}
+// export interface UserDetails {
+//   about: string | null;
+//   email: string | null;
+//   first_name: string | null;
+//   id: string;
+//   industry: string | null;
+//   last_name: string | null;
+//   linkedin: string | null;
+//   location: string | null;
+//   phone_number: number | null;
+//   website: string | null;
+// }
 
 export interface Project{
   id: string;
@@ -24,5 +24,13 @@ export interface Applicant{
   name: string;
   email: string;
   phone_number: number;
-  linkedin: string
+  linkedin: string;
+  status: 'pending' | 'accepted'
+}
+
+export interface UserDetails {
+  id: string;
+  name: string;
+  email: string;
+  applied: string[] | null
 }

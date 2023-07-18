@@ -5,7 +5,7 @@ import { collection, getDocs } from "firebase/firestore"
 const getApplicantsById = async (project_id: string) => {
     if(!project_id) return null
     
-    const collectionRef = collection(db, 'projects', project_id, 'applicant')
+    const collectionRef = collection(db, 'projects', project_id, 'applicants')
 
     const applicants: Applicant[] = []
 

@@ -4,11 +4,12 @@ import Input from "./Input";
 import AuthModal from "./AuthModal";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import {auth} from '@/utils/firebase'
+import {auth, db} from '@/utils/firebase'
 import { use, useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { userContext } from "@/app/hooks/useUser";
+import { doc, setDoc } from "firebase/firestore";
 
 const SignupComponent = () => {
   const router = useRouter();
@@ -27,9 +28,26 @@ const SignupComponent = () => {
     console.log([values.email, values.password]);
 
     try {
-      createUserWithEmailAndPassword(auth, values.email, values.password)
-        .then((res) => toast.success("/user created"))
-        .catch((error) => toast.error(error.message));
+
+      const response = await createUserWithEmailAndPassword(auth, values.email, values.password)
+
+      if(!response.user){
+        return toast.error('Something went wrong')
+      }
+
+      const docRef = doc(db, 'users', response.user.uid)
+
+      const makeNewUser = await setDoc(docRef, {
+        name: values.name,
+        email: values.email,
+        applied: []
+      })
+
+      toast.success("Signup completed")
+
+      // createUserWithEmailAndPassword(auth, values.email, values.password)
+      //   .then((res) => toast.success("/user created"))
+      //   .catch((error) => toast.error(error.message));
     } catch (error) {
       console.log(error);
     }
