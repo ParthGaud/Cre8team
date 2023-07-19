@@ -7,6 +7,7 @@ import ApplicantList from "@/components/ApplicantList";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface ApplicantClientProps {
   applicants: Applicant[] | null;
@@ -17,6 +18,7 @@ const ApplicantClientProps: React.FC<ApplicantClientProps> = ({
   applicants,
   project,
 }) => {
+  const router = useRouter()
   if (applicants == null || applicants.length === 0) {
     return (
         <Container>
@@ -37,6 +39,7 @@ const ApplicantClientProps: React.FC<ApplicantClientProps> = ({
       await updateDoc(docRef, {
         status: "accepted",
       });
+      router.refresh()
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");

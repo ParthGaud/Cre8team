@@ -6,7 +6,7 @@ import NavItems from "./NavItems";
 import Button from './Button'
 import { twMerge } from "tailwind-merge";
 import {useForm, SubmitHandler, FieldValues} from 'react-hook-form'
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { userContext } from "@/app/hooks/useUser";
 import {auth} from '@/utils/firebase'
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 
@@ -11,9 +11,10 @@ interface NavItemsLabel{
 const NavItems: React.FC<NavItemsLabel> = ({
     label, onClick
 }) => {
+    const path = usePathname()
     const router = useRouter()
     return (
-        <div className="flex items-center justify-center cursor-pointer px-3 hover:text-neutral-700 transition" onClick={onClick}>
+        <div className={`flex items-center justify-center cursor-pointer px-3 hover:text-neutral-700 transition ${path === label && 'font-semibold'}`} onClick={onClick}>
             {label}
         </div>
     )
