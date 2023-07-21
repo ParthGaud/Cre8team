@@ -9,6 +9,7 @@ import {useForm, SubmitHandler, FieldValues} from 'react-hook-form'
 import { usePathname, useRouter } from "next/navigation";
 import { userContext } from "@/app/hooks/useUser";
 import {auth} from '@/utils/firebase'
+import { Toaster } from "react-hot-toast";
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -26,6 +27,7 @@ const Container: React.FC<ContainerProps> = ({ children, className }) => {
   }
   return (
     <>
+      <Toaster />
       <div className={twMerge("flex flex-row items-center justify-between h-min-[136px] min-w-full py-6 px-10 bg-blue-100", className)}>
         <div className="flex-1 flex items-center gap-x-5 flex-row">
             <div className="" onClick={() => router.push("/")}>
@@ -33,7 +35,7 @@ const Container: React.FC<ContainerProps> = ({ children, className }) => {
             </div>
             <NavItems label="Projects" onClick={() => router.push('/Projects')} />
             <NavItems label={`Dashboard`} onClick={() => router.push(`/Dashboard/${context?.user?.uid}`)} />
-            <NavItems label="About" onClick={() => router.push('/About')} />
+            {/* <NavItems label="About" onClick={() => router.push('/About')} /> */}
         </div>
 
         {context?.user ? (

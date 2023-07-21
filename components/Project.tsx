@@ -108,6 +108,7 @@ const Project: React.FC<ProjectProps> = ({ project }) => {
 
       toast.success("applied");
     } catch (error) {
+      console.log(error)
       toast.error("try again later");
     }
     router.refresh();
@@ -140,8 +141,7 @@ const Project: React.FC<ProjectProps> = ({ project }) => {
                 <h1 className="text-xl font-semibold transform uppercase">
                   {project?.title}
                 </h1>
-                <div className="text-justify">{project?.description}</div>
-                <div>requirements:</div>
+                <div className="text-justify"><span className="font-semibold">Description</span> : {project?.description}</div>
                 {user?.uid !== project.user_id && (
                   <Button
                     onClick={onClick}
