@@ -46,7 +46,7 @@ const ProjectClient: React.FC<ProjectClientProps> = ({ projects }) => {
 
   useEffect(() => {
     if (projects && search.length > 0) {
-      setProjectsState(projects.filter((item) => item.title.includes(search)));
+      setProjectsState(projects.filter((item) => item.title.toLowerCase().includes(search.toLowerCase())));
     } else if (search.length === 0) {
       setProjectsState(projects);
     }
