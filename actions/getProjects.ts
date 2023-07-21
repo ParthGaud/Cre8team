@@ -1,12 +1,12 @@
 import {db} from '@/utils/firebase'
-import {collection, query, getDocs} from 'firebase/firestore'
+import {collection, getDocs, query, orderBy} from 'firebase/firestore'
 import {Project} from '@/types'
 
 const getProjects = async () => {
     const data : Project[] = []
     const ref = collection(db, 'projects')
-    const query = await getDocs(ref)
-    query.forEach((doc) => {
+    const projects = await getDocs(query(ref, orderBy('created_at', 'desc')))
+    projects.forEach((doc) => {
         const project : Project = doc.data() as Project
         project['id'] = doc.id
         data.push(project as Project)

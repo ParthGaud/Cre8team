@@ -6,11 +6,11 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import Input from "./Input"
 import { useContext, useState } from "react"
 import Button from "./Button"
-import {db} from '@/utils/firebase'
+import {app, db} from '@/utils/firebase'
 import { userContext } from "@/app/hooks/useUser"
 import { toast } from "react-hot-toast"
 import { useRouter } from "next/navigation"
-import { addDoc, collection } from "firebase/firestore"
+import { FieldValue, Timestamp, addDoc, collection, serverTimestamp } from "firebase/firestore"
 
 const CreateProject = () => {
     const {isOpen, onClose, onOpen} = useProject()
@@ -39,7 +39,8 @@ const CreateProject = () => {
                 title: values.title,
                 description: values.description,
                 user_id: context?.user?.uid,
-                applicants: []
+                applicants: [],
+                created_at: serverTimestamp()
             })
 
             toast.success(`project added ${docRef.id}`)

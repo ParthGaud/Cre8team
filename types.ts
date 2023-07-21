@@ -11,12 +11,15 @@
 //   website: string | null;
 // }
 
+import { FieldValue } from "firebase/firestore";
+
 export interface Project{
   id: string;
   user_id: string;
   title: string;
   description: string
   applicants: string[] | null
+  created_at: FieldValue
 }
 
 export interface Applicant{
