@@ -1,6 +1,6 @@
 "use client";
 
-import { Project } from "@/types";
+import { Project, UserDetails } from "@/types";
 import React, { use, useContext, useState } from "react";
 import Container from "./Container";
 import Image from "next/image";
@@ -24,9 +24,10 @@ import { toast } from "react-hot-toast";
 
 interface ProjectProps {
   project: Project | null;
+  projectUser: UserDetails | null
 }
 
-const Project: React.FC<ProjectProps> = ({ project }) => {
+const Project: React.FC<ProjectProps> = ({ project, projectUser }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const context = useContext(userContext);
@@ -70,19 +71,6 @@ const Project: React.FC<ProjectProps> = ({ project }) => {
     }
 
     try {
-      //   const collectionRef = collection(db, "projects", project.id, "applicant");
-      //   const response = await addDoc(collectionRef, {
-      //     name: values.name,
-      //     email: values.email,
-      //     phone_number: values.phone_number,
-      //     linkedin: values.linkedin,
-      //     user_id: context?.user?.uid,
-      //   });
-
-      //   await updateDoc(doc(db, "projects", project.id), {
-      //     applicants: arrayUnion(response.id),
-      //   });
-
       const collectionRef = doc(
         db,
         "projects",
@@ -126,15 +114,9 @@ const Project: React.FC<ProjectProps> = ({ project }) => {
       <Container>
         <div className="flex items-center justify-center min-h-[80vh]">
           <div className="flex w-[80vw] md:w-[60vw] lg:w-[50vw] m-auto bg-blue-200 rounded-lg px-6 py-3">
-            <div className="h-full w-32">
-              <div className="w-20 h-20 rounded-full border border-transparent relative flex">
-                <Image
-                  src="/images/Poster Profile Image.svg"
-                  alt="profile img"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+            <div className="h-full w-35 pr-4 text-center">
+              Posted By: <br />
+              <span className="font-semibold">{projectUser?.name}</span>
             </div>
             <div className="flex-1">
               <div className="flex flex-col gap-y-4">

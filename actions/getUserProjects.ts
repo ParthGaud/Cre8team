@@ -16,6 +16,7 @@ const getUserProjects = async (user_id: string) => {
 
   documents.forEach((doc) => {
     const project: Project = doc.data() as Project;
+    delete project.created_at
     project["id"] = doc.id;
     data.push(project as Project);
   });

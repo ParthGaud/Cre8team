@@ -28,8 +28,8 @@ const Container: React.FC<ContainerProps> = ({ children, className }) => {
   return (
     <>
       <Toaster />
-      <div className={twMerge("flex flex-row items-center justify-between h-min-[136px] min-w-full py-6 px-10 bg-blue-100", className)}>
-        <div className="flex-1 flex items-center gap-x-5 flex-row">
+      <div className={twMerge("flex flex-col md:flex-row items-center justify-between h-min-[136px] min-w-full py-6 px-10 bg-blue-100 gap-y-3", className)}>
+        <div className="flex-1 flex items-center gap-x-5 flex-col md:flex-row gap-y-3">
             <div className="" onClick={() => router.push("/")}>
                 <Image src='/images/Logo.svg' className="hidden md:block cursor-pointer"  width={180} height={180} alt="logo" />
             </div>
@@ -39,13 +39,13 @@ const Container: React.FC<ContainerProps> = ({ children, className }) => {
         </div>
 
         {context?.user ? (
-          <div className="flex flex-row gap-x-5">
+          <div className="flex flex-col md:flex-row gap-x-5">
           <Button className="border-blue-700 text-blue-700" onClick={Logout}>
               Logout
           </Button>
       </div>
         ) : (
-          <div className="flex flex-row gap-x-5">
+          <div className="flex gap-x-5">
             <Button className="border-blue-700 text-blue-700" onClick={() => router.push('/login')}>
                 Login
             </Button>

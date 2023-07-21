@@ -10,6 +10,7 @@ const getProjectWithId = async (id: string) => {
     const project = await getDoc(docRef)
     if(project.exists()){
         const res = project.data() as Project
+        delete res.created_at
         res['id'] = project.id
         return res as Project
     }

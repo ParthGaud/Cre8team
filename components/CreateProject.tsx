@@ -43,7 +43,7 @@ const CreateProject = () => {
                 created_at: serverTimestamp()
             })
 
-            toast.success(`project added ${docRef.id}`)
+            toast.success(`project added`)
         }
         catch(error){
             toast.error('Something went wrong')

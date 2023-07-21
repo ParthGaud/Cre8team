@@ -19,7 +19,7 @@ export interface Project{
   title: string;
   description: string
   applicants: string[] | null
-  created_at: FieldValue
+  created_at?: FieldValue
 }
 
 export interface Applicant{
@@ -35,5 +35,5 @@ export interface UserDetails {
   id: string;
   name: string;
   email: string;
-  applied: string[] | null
+  applied?: string[] | null
 }

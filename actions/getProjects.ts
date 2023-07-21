@@ -8,6 +8,7 @@ const getProjects = async () => {
     const projects = await getDocs(query(ref, orderBy('created_at', 'desc')))
     projects.forEach((doc) => {
         const project : Project = doc.data() as Project
+        delete project.created_at
         project['id'] = doc.id
         data.push(project as Project)
     })
